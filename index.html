@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Практика работы с DOM</title>
+ <style>
+ .highlight {
+ background-color: yellow;
+ font-weight: bold;
+ }
+ .new-item {
+ color: green;
+ border-left: 3px solid green;
+ padding-left: 10px;
+ }
+ .hidden {
+ display: none;
+ }
+ </style>
+</head>
+<body>
+ <header>
+ <h1 id="main-title">Добро пожаловать на практику DOM!</h1>
+  </header>
+ <section id="container">
+ <p class="content-paragraph">Это первый абзац.</p>
+ <p class="content-paragraph">Это второй абзац.</p>
+ <p>В этом абзаце есть <a href="#" id="demo-link">демо-ссылка</a>.</p>
+ </section>
+ <button id="action-button">Нажми на меня!</button>
+ <button id="reset-button">Сбросить</button>
+ <div id="project-area">
+ <h2>Простой проект: Список дел</h2>
+ <input type="text" id="new-todo" placeholder="Введите новую задачу">
+ <button id="add-todo">Добавить задачу</button>
+ <ul id="todo-list"></ul>
+ </div>
+ <script src="script.js"></script>
+</body>
+</html>
