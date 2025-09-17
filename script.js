@@ -16,32 +16,36 @@ demoLink.setAttribute('href', 'https://www.google.com');
 allParagraphs[1].textContent = 'Это второй абзац (обновленный).';
 
 
-const newParagraph = document.createElement('p');
-newParagraph.textContent = 'Это совершенно новый абзац!';
-container.appendChild(newParagraph);
+const newParagraphEnd = document.createElement('p');
+newParagraphEnd.textContent = 'Это совершенно новый абзац (в конце)!';
+container.appendChild(newParagraphEnd);
 
-container.prepend(newParagraph);
+const newParagraphStart = document.createElement('p');
+newParagraphStart.textContent = 'Это совершенно новый абзац (в начале)!';
+container.prepend(newParagraphStart);
 
 
 firstParagraph.classList.add('highlight');
-setTimeout(function() {
+setTimeout(() => {
   firstParagraph.classList.remove('highlight');
 }, 2000);
 
-projectAreaH2.addEventListener('click', function() {
+
+projectAreaH2.addEventListener('click', function () {
   this.classList.toggle('hidden');
 });
 
-actionButton.addEventListener('click', function() {
+
+actionButton.addEventListener('click', () => {
   document.body.style.backgroundColor = 'aliceblue';
 });
 
-resetButton.addEventListener('click', function() {
+resetButton.addEventListener('click', () => {
   location.reload();
 });
 
-let tasks = []; 
 
+let tasks = [];
 
 function loadTasks() {
   const savedTasks = JSON.parse(localStorage.getItem('tasks'));
@@ -51,11 +55,9 @@ function loadTasks() {
   }
 }
 
-
 function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-
 
 function addTask() {
   const taskText = taskInput.value.trim();
@@ -75,9 +77,8 @@ function addTask() {
 
 addTaskButton.addEventListener('click', addTask);
 
-
 function renderTasks() {
-  taskList.innerHTML = ''; 
+  taskList.innerHTML = '';
 
   tasks.forEach(task => {
     const taskItem = document.createElement('li');
@@ -88,24 +89,24 @@ function renderTasks() {
       taskItem.classList.add('completed');
     }
 
-    
+
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'X';
-    deleteButton.addEventListener('click', function() {
+    deleteButton.addEventListener('click', function (event) {
+      event.stopPropagation();
       deleteTask(task.id);
     });
 
     taskItem.appendChild(deleteButton);
 
-    
-    taskItem.addEventListener('click', function() {
+
+    taskItem.addEventListener('click', function () {
       toggleTaskStatus(task.id);
     });
 
     taskList.appendChild(taskItem);
   });
 }
-
 
 function toggleTaskStatus(taskId) {
   const task = tasks.find(t => t.id === taskId);
